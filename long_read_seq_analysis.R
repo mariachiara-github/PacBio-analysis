@@ -1,10 +1,7 @@
-#SRR23409825_1
-
-
 library("Biostrings")
 library(seqRFLP)     #to tranform a dataframe in FASTA file
 
-fasta <- readDNAStringSet("SRR23409825_1.fasta")
+fasta <- readDNAStringSet("SRR23409825_1.fasta")  #FASTA file
 head(fasta)
 fasta.df <- data.frame(as.character(fasta))
 
