@@ -3,15 +3,16 @@ library(seqRFLP)     #to tranform a dataframe in FASTA file
 
 fasta <- readDNAStringSet("SRR23409825_1.fasta")  #FASTA file
 head(fasta)
-fasta.df <- data.frame(as.character(fasta))
+fasta.df <- data.frame(as.character(fasta))  #transform the FASTA file in a dataframe to handle data better
 
 
-fusions <- readDNAStringSet("short_reads_fusion.txt")
+fusions <- readDNAStringSet("short_reads_fusion.txt")   #file containing the fusion transcripts identified by short reads
 seq_name = names(fusions)
 sequence = paste(fusions)
-df.fusions <- data.frame(seq_name, sequence)
+df.fusions <- data.frame(seq_name, sequence)            #transform the fusion transcripts data (short_reads_fusion.txt) in a dataframe
 
 
+#For each short_read_fusion, look 
 for (i in 1:length(sequence)){
   print(i)
   seq <- (sequence[i])
