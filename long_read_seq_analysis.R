@@ -23,7 +23,7 @@ for (i in 1:length(sequence)){
   match.df <- data.frame(as.character(unlist(match)))
   seq.matched <-subset(fasta.df,rownames(fasta.df) %in% rownames(match.df))
   if (nrow(seq.matched) != 0) {
-    fasta.match<- dataframe2fas(seq.matched, file = paste(fusion_name,"mismatch",".fasta"))
+    fasta.match<- dataframe2fas(seq.matched, file = paste(fusion_name,".fasta", sep =''))
   }
   
 }
