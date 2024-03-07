@@ -1,4 +1,16 @@
-# PacBio-analysis
+# PacBio Analysis for fusion transcripts detection
+
+SELECTED DATASETS
+
+1. First PacBio dataset: https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/ , the three cerebellum samples were used for a the toy analysis. 
+
+2. Second PacBio dataset (taken from a Bioproject): https://www.ncbi.nlm.nih.gov/bioproject/975746 . In the Bioproject 12 samples were employed; in particular from each sample, the long-read sequence data was extracted (Iso-seq, Pacific Biosciences (PacBio)) using RNA extracted from three regions of the human postmortem brain: temporal cortex, hypothalamus, and cerebellum. ((PACBIO human RNA seq brain) AND bioproject_sra[filter] NOT bioproject_gap[filter])
+
+
+
+
+
+
 Analysis of long-read RNAseq data for the identification of fusion transcripts
 
 The R code found in the repository (long_read_seq_analysis.R) was used to detect fusion transcripts, previously identified by the FusionCatcher tool in short-read RNAseq data, in long-read RNAseq data. 
