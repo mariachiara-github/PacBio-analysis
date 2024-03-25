@@ -1,1 +1,5 @@
 #Align the FLNC.bam file to the reference genome using the pbmm2 tool (https://github.com/PacificBiosciences/pbmm2) 
+
+pbmm2 align hg38.mmi flnc.bam aligned.bam --preset ISOSEQ --sort --log-level INFO
+
+
