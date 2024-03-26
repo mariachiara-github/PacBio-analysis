@@ -15,7 +15,7 @@ for (i in col){
 name_column <-c()
 for (i in new_column){
   new <- gsub("GN=","",i)
-  name <- gsub(",","-",new)
+  name <- gsub(",","_",new)
   name_column <- append(name_column,name)
 }
 
@@ -116,15 +116,19 @@ bed_genome_browser <- data.frame(chrm,chromStart,chromEnd,name,name_ID,score,val
 
 bed_gb <- data.frame()
 bed_gb_clean <- data.frame()
+bed_morethan2_clean <- data.frame()
 
 for (i in 1:nrow(bed_genome_browser)){
   print(i)
   n <- bed_genome_browser$name[i]
-  d <- data.frame(strsplit(n ,"-"))
+  d <- data.frame(strsplit(n ,"_"))
   row_n <- nrow(d)
   if (row_n <= 2){
     bed_gb <- bed_genome_browser[i,]
     bed_gb_clean <- rbind(bed_gb_clean,bed_gb)
+  }
+   if (row_n > 2){
+    bed_morethan2_clean <- rbind(bed_morethan2_clean,bed_genome_browser[i,])
   }
 }
 
