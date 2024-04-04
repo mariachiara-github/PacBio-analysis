@@ -53,7 +53,7 @@ for (i in read_col){
 write.table(reads_BED, "C:/.../reads_BED.txt", row.names=FALSE, quote=FALSE)   
 
 #####
-SBATCH CODE 
+#SBATCH CODE 
 #To create a BED file of the reads_BED reads, use the following sbatch script
 #The aligned.bed file is the BED file derived from the aligned.bam file used in pipeline_pbfusion script
 
