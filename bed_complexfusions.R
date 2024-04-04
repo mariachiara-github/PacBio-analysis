@@ -3,7 +3,7 @@
 
 name <- name_column
 name_ID <- name_column_ID
-read_name <- bed$V12             #RN (Names of reads contributing support)
+read_name <- bed_clean_1$V12             #RN (Names of reads contributing support)
 
 bed_reads <- data.frame(name,name_ID,read_name)
 write.table(bed_reads, "C:/.../bed_reads.txt", row.names=FALSE, quote=FALSE)  #directory where you want to save the file
