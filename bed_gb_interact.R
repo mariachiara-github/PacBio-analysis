@@ -1,8 +1,28 @@
-#Read BED file of pbfusion
+#####
+#Read BED file of pbfusion (isoseq.breakpoints.groups.bed)
 bed <- read.table("C:/Users/../isoseq.breakpoints.groups.bed")  #directory of the isoseq.breakpoints.groups. bed file created by the pbfusion pipeline
+
+#Filter the BED file 
+#1ST FILTER: remove all the fusions inter-chromosomal
+
+bed_clean_1 <- data.frame()
+chr1 <- bed$V1
+chr2 <- bed$V4
+
+for (i in 1:nrow(bed)){
+  print(i)
+  if (chr1[i] == chr2[i]){
+    b <- bed[i,]
+    bed_clean_1 <- rbind(bed_clean_1,b)
+  }
+}
+
+
+
 col <- bed$V11    #column with info about the fusions detected
 
-##### CREATE THE COLUMNS FOR THE INTERACT TRACK
+######
+#CREATE THE COLUMNS FOR THE INTERACT TRACK
 
 #Create a new column with the NAME of the fusion
 new_column <- c()
