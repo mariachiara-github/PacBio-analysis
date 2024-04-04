@@ -52,3 +52,13 @@ for (i in read_col){
 
 write.table(reads_BED, "C:/.../reads_BED.txt", row.names=FALSE, quote=FALSE)   
 
+#####
+SBATCH CODE 
+#To create a BED file of the reads_BED reads, use the following sbatch script
+#The aligned.bed file is the BED file derived from the aligned.bam file used in pipeline_pbfusion script
+
+sort -u reads_BED.txt > unique_reads_BED.txt
+cat aligned.bed | grep -wf unique_reads_BED.txt > fusions_not_pairwise.bed
+
+#The fusions_not_pairwise.bed can be directly uploaded on the custom track of Genome Browser
+
