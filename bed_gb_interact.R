@@ -17,12 +17,12 @@ for (i in 1:nrow(bed)){
   }
 }
 
+write.table(bed_clean_1, "C:/.../bed_clean_1.txt", row.names=FALSE, quote=FALSE)
 
-
-col <- bed$V11    #column with info about the fusions detected
-
-######
+##### 
 #CREATE THE COLUMNS FOR THE INTERACT TRACK
+
+col <- bed_clean_1$V11             #column with info about the fusions detected
 
 #Create a new column with the NAME of the fusion
 new_column <- c()
@@ -58,10 +58,10 @@ for (i in new_column_ID){
 #Create a column for the COLOR (the fusion will be purple if strand 1 and strand 2 are the same; + + or - -; the fusion will be pink otherwise)
 
 color <- c()
-for (i in 1:nrow(bed)){
+for (i in 1:nrow(bed_clean_1)){
   print(i)
-  f <- bed$V9[i]
-  r <- bed$V10[i]
+  f <- bed_clean_1$V9[i]
+  r <- bed_clean_1$V10[i]
   if (f == r){
     color <- append(color,"#7A67EE")
   }
@@ -87,7 +87,7 @@ for (i in score){
 
 #Create a column for the VALUE --> LOW = 0, MEDIUM = 1
 
-value <- bed$V8
+value <- bed_clean_1$V8
 
 value_column <- c()
 for(i in value){
@@ -110,25 +110,25 @@ exp_col <- rep("PacBio",177614)
 #COLUMN: chrom	chromStart	chromEnd	name	score	value	exp	color	sourceChrom	sourceStart	sourceEnd	sourceName	sourceStrand	targetChrom	targetStart	targetEnd	targetName	targetStrand
 #First we create a dataframe without the sourceName and targetName --> do this after the cleaning. These two columns will be created after cleaning the dataset from fusions between more than 2 genes
 
-chrm <- bed$V1
-chromStart <- bed$V2
-chromEnd <- bed$V3
+chrm <- bed_clean_1$V1
+chromStart <- bed_clean_1$V2
+chromEnd <- bed_clean_1$V3
 name <- name_column
 name_ID <- name_column_ID
 score <- score_column
 value <- value_column
 exp <- exp_col
 color <- color
-sourceChrom <- bed$V1
-sourceStart <- bed$V2
-sourceEnd <- bed$V3
+sourceChrom <- bed_clean_1$V1
+sourceStart <- bed_clean_1$V2
+sourceEnd <- bed_clean_1$V3
 #sourceName <- source_name
-sourceStrand <- bed$V9
-targetChrom <- bed$V4
-targetStart <- bed$V5
-targetEnd <- bed$V6
+sourceStrand <- bed_clean_1$V9
+targetChrom <- bed_clean_1$V4
+targetStart <- bed_clean_1$V5
+targetEnd <- bed_clean_1$V6
 #targetName <- target_name
-targetStrand <- bed$V10
+targetStrand <- bed_clean_1$V10
 
 bed_genome_browser <- data.frame(chrm,chromStart,chromEnd,name,name_ID,score,value, exp, color, sourceChrom,sourceStart,sourceEnd,sourceStrand,targetChrom,targetStart,targetEnd,targetStrand)
 
