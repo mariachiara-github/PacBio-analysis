@@ -58,7 +58,7 @@ write.table(reads_BED, "C:/.../reads_BED.txt", row.names=FALSE, quote=FALSE)
 #The aligned.bed file is the BED file derived from the aligned.bam file used in pipeline_pbfusion script
 
 sort -u reads_BED.txt > unique_reads_BED.txt
-cat aligned.bed | grep -wf unique_reads_BED.txt > fusions_not_pairwise.bed
+cat aligned.bed | grep -wf unique_reads_BED.txt > bed_complexfusions.bed
 
 #The fusions_not_pairwise.bed can be directly uploaded on the custom track of Genome Browser
 
