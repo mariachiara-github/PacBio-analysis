@@ -112,7 +112,8 @@ targetStrand <- bed$V10
 
 bed_genome_browser <- data.frame(chrm,chromStart,chromEnd,name,name_ID,score,value, exp, color, sourceChrom,sourceStart,sourceEnd,sourceStrand,targetChrom,targetStart,targetEnd,targetStrand)
 
-#Remove fusions between 3 or more genes
+#Remove fusions between 2 or more genes and write in a new data frame all the interactions between more than 2 genes (bed_morethan2_clean dataframe)
+#Create a data frame just with fusions between 2 genes(bed_gb_clean data frame)
 
 bed_gb <- data.frame()
 bed_gb_clean <- data.frame()
