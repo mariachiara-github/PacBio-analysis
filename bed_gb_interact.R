@@ -175,7 +175,7 @@ bed_genome_browser_clean <- cbind(bed_gb_clean[,1:4],bed_gb_clean[,6:12],source_
 colnames(bed_genome_browser_clean)[18] <- "targetStrand"
 
 #Create a txt file --> upload it on Genome Browser. The dataset is also cleaned from the fusions found in alt haplotypes (for now, will fix this)
-write.table(bed_genome_browser_clean, "C:/Users/Maria Chiara/Downloads//bed_genome_browser_clean.txt", row.names=FALSE, quote=FALSE)
+write.table(bed_genome_browser_clean, "C:/.../bed_genome_browser_clean.txt", row.names=FALSE, quote=FALSE)
 
 bed_gb_subset <- bed_genome_browser_clean[6583:143315,]
-write.table(bed_gb_subset, "C:/Users/Maria Chiara/Downloads//bed_bg_subset.txt", row.names=FALSE, quote=FALSE)
+write.table(bed_gb_subset, "C:/.../bed_bg_subset.txt", row.names=FALSE, quote=FALSE)
