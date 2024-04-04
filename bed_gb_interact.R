@@ -1,6 +1,6 @@
 #Read BED file of pbfusion
-bed <- read.table("C:/Users/Maria Chiara/Downloads/isoseq.breakpoints.groups.bed")
-col <- bed$V11
+bed <- read.table("C:/Users/../isoseq.breakpoints.groups.bed")  #directory of the isoseq.breakpoints.groups. bed file created by the pbfusion pipeline
+col <- bed$V11    #column with info about the fusions detected
 
 ##### CREATE THE COLUMNS FOR THE INTERACT TRACK
 
@@ -19,7 +19,7 @@ for (i in new_column){
   name_column <- append(name_column,name)
 }
 
-#Create a new column with the ID NAME of the gene
+#Create a new column with the ID NAME of the gene (gene name from reference GTF)
 
 new_column_ID <- c()
 for (i in col){
@@ -35,7 +35,7 @@ for (i in new_column_ID){
   name_column_ID <- append(name_column_ID,name_ID)
 }
 
-#Create a column for the COLOR 
+#Create a column for the COLOR (the fusion will be purple if strand 1 and strand 2 are the same; + + or - -; the fusion will be pink otherwise)
 
 color <- c()
 for (i in 1:nrow(bed)){
@@ -50,7 +50,7 @@ for (i in 1:nrow(bed)){
   }
 }
 
-#Create a column for the SCORE --> read count column
+#Create a column for the SCORE --> RC (Number of reads supporting breakpoints) 
 
 score <- c()
 for (i in col){
@@ -81,7 +81,7 @@ for(i in value){
   }
 }
 
-#Create a column for EXP --> PacBio
+#Create a column for EXP --> PacBio (name of the experiment)
 
 exp_col <- rep("PacBio",177614)
 
