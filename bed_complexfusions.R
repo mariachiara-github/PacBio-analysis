@@ -1,14 +1,14 @@
-#Create a dataframe for BAM --> just get the reads and the name 
+#Create a data frame with the name of the fusion and the reads associated with it 
+#The following columns are taken from the bed_gb_interact.R code
 
 name <- name_column
 name_ID <- name_column_ID
-read_name <- bed$V12
+read_name <- bed$V12             #RN (Names of reads contributing support)
 
 bed_reads <- data.frame(name,name_ID,read_name)
-write.table(bed_reads, "C:/Users/Maria Chiara/Downloads/bed_reads.txt", row.names=FALSE, quote=FALSE)
+write.table(bed_reads, "C:/.../bed_reads.txt", row.names=FALSE, quote=FALSE)  #directory where you want to save the file
 
-#Write a dataset with all the fusions between more than 2 genes 
-
+#Create a subset from the bed_reads containing just fusions between more than 2 genes --> COMPLEX FUSIONS
 
 bed_morethan2_reads <- data.frame()
 
@@ -23,11 +23,11 @@ for (i in 1:nrow(bed_reads)){
   
 }
 
-
 reads<- bed_morethan2_reads$read_name
-write.table(reads, "C:/Users/Maria Chiara/Downloads/reads.txt", row.names=FALSE, quote=FALSE)
-reads <- read.table("C:/Users/Maria Chiara/Downloads/reads.txt")
+write.table(reads, "C:/.../reads.txt", row.names=FALSE, quote=FALSE)
+#reads <- read.table("C:/.../reads.txt")   #used to upload the file on R without creating it every time
 
+#Extract just the RN name from the read_name column
 read_col <- c()
 for (i in reads){
   rn <- gsub("RN=","",i)
@@ -35,6 +35,7 @@ for (i in reads){
   read_col <- append(read_col,rn_name)
 }
 
+#Create a file where each line is the name of ONE read name 
 sep <- c()
 reads_BED <- c()
 for (i in read_col){
@@ -49,5 +50,5 @@ for (i in read_col){
   }
 }
 
-write.table(reads_BED, "C:/Users/Maria Chiara/Downloads/reads_BED.txt", row.names=FALSE, quote=FALSE)
+write.table(reads_BED, "C:/.../reads_BED.txt", row.names=FALSE, quote=FALSE)   
 
