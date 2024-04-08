@@ -3,9 +3,10 @@
 bed <- read.table("C:/Users/../isoseq.breakpoints.groups.bed")  #directory of the isoseq.breakpoints.groups. bed file created by the pbfusion pipeline
 
 #Filter the BED file 
-#1ST FILTER: remove all the fusions inter-chromosomal
+#1ST FILTER: remove all the fusions inter-chromosomal and write them in a different data frame
 
 bed_clean_1 <- data.frame()
+bed_inter <- data.frame()
 chr1 <- bed$V1
 chr2 <- bed$V4
 
@@ -15,9 +16,14 @@ for (i in 1:nrow(bed)){
     b <- bed[i,]
     bed_clean_1 <- rbind(bed_clean_1,b)
   }
+  if (chr1[i] != chr2[i]){
+    inter <- bed[i,]
+    bed_inter <- rbind(bed_inter,inter)
+  }
 }
 
 write.table(bed_clean_1, "C:/.../bed_clean_1.txt", row.names=FALSE, quote=FALSE)
+write.table(bed_clean_1, "C:/.../bed_inter.txt", row.names=FALSE, quote=FALSE)
 
 ##### 
 #CREATE THE COLUMNS FOR THE INTERACT TRACK
@@ -162,37 +168,35 @@ source_name <- c()
 target_name <- c()
 for (i in 1:nrow(bed_gb_clean)){
   gene_n<- bed_gb_clean$name[i]
-  gene_name <- data.frame(strsplit(gene_n ,"-"))
+  gene_name <- data.frame(strsplit(gene_n ,"_"))
   ID_n <- bed_gb_clean$name_ID[i]
   ID_name <- data.frame(strsplit(ID_n," "))
   source_name <- append(source_name, paste(gene_name[1,],"(",ID_name[1,],")",sep ="" ))
   target_name <- append(target_name, paste(gene_name[2,],"(",ID_name[2,],")",sep ="" ))
   }
 
+
 #CREATE FINAL DATASET
-chrm <- bed$V1
-chromStart <- bed$V2
-chromEnd <- bed$V3
-name <- name_column
-name_ID <- name_column_ID
-score <- score_column
-value <- value_column
-exp <- exp_col
-color <- color
-sourceChrom <- bed$V1
-sourceStart <- bed$V2
-sourceEnd <- bed$V3
+chrm <- bed_gb_clean$chrm
+chromStart <- bed_gb_clean$chromStart
+chromEnd <- bed_gb_clean$chromEnd
+name <- bed_gb_clean$name
+score <- bed_gb_clean$score
+value <- bed_gb_clean$value
+exp <- bed_gb_clean$exp
+color <- bed_gb_clean$color
+sourceChrom <- bed_gb_clean$sourceChrom
+sourceStart <- bed_gb_clean$sourceStart
+sourceEnd <- bed_gb_clean$sourceEnd
 sourceName <- source_name
-sourceStrand <- bed$V9
-targetChrom <- bed$V4
-targetStart <- bed$V5
-targetEnd <- bed$V6
+sourceStrand <- bed_gb_clean$sourceStrand
+targetChrom <- bed_gb_clean$targetChrom
+targetStart <- bed_gb_clean$targetStart
+targetEnd <- bed_gb_clean$targetEnd
 targetName <- target_name
-targetStrand <- bed$V10
+targetStrand <- bed_gb_clean$targetStrand
 
-
-bed_genome_browser_clean <- cbind(bed_gb_clean[,1:4],bed_gb_clean[,6:12],source_name,bed_gb_clean[,13:16],target_name, bed_gb_clean[,17])
-colnames(bed_genome_browser_clean)[18] <- "targetStrand"
+bed_genome_browser_clean <- data.frame(chrm,chromStart,chromEnd,name,score,value,exp,color,sourceChrom,sourceStart,sourceEnd,sourceName,sourceStrand,targetChrom,targetStart,targetEnd,targetName,targetStrand)
 
 #Create a txt file --> upload it on Genome Browser. The dataset is also cleaned from the fusions found in alt haplotypes (for now, will fix this)
 write.table(bed_genome_browser_clean, "C:/.../bed_genome_browser_clean.txt", row.names=FALSE, quote=FALSE)
