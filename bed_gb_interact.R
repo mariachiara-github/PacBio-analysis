@@ -198,8 +198,58 @@ targetStrand <- bed_gb_clean$targetStrand
 
 bed_genome_browser_clean <- data.frame(chrm,chromStart,chromEnd,name,score,value,exp,color,sourceChrom,sourceStart,sourceEnd,sourceName,sourceStrand,targetChrom,targetStart,targetEnd,targetName,targetStrand)
 
-#Create a txt file --> upload it on Genome Browser. The dataset is also cleaned from the fusions found in alt haplotypes (for now, will fix this)
-write.table(bed_genome_browser_clean, "C:/.../bed_genome_browser_clean.txt", row.names=FALSE, quote=FALSE)
+#Substitute the name of the chr with the one used by Genome Browser for the costumed tracks
 
-bed_gb_subset <- bed_genome_browser_clean[6583:143315,]
-write.table(bed_gb_subset, "C:/.../bed_bg_subset.txt", row.names=FALSE, quote=FALSE)
+#Get all the chr names (unique list)
+c <- unique(bed_genome_browser_clean$chrm)
+
+# Replace the name in the chr,sourcechr,and targetchr
+library(dplyr)
+
+bed1 <- bed_genome_browser_clean %>%
+  mutate(chrm = recode(chrm, 'GL383534.2' = 'chr7_GL383534v2_alt', 'GL383545.1' = 'chr10_GL383545v1_alt', 'GL383574.1' = 'chr19_GL383574v1_alt','GL383575.2'= 'chr19_GL383575v2_alt', 'GL383580.2'='chr21_GL383580v2_alt','GL383582.2'='chr22_GL383582v2_alt','GL000250.2'='chr6_GL000250v2_alt',
+                       'GL000251.2'= 'chr6_GL000251v2_alt','GL000252.2' = 'chr6_GL000252v2_alt','GL000195.1'='chrUn_GL000195v1','GL000219.1' ='chrUn_GL000219v1','GL000256.2'='chr6_GL000256v2_alt','GL000258.2' = 'chr17_GL000258v2_alt','GL949749.2'= 'chr19_GL949749v2_alt','GL949750.2'= 'chr19_GL949750v2_alt',
+                       'GL949752.1' = 'chr19_GL949752v1_alt','GL949753.2'= 'chr19_GL949753v2_alt', 'KB663609.1' = 'chr22_KB663609v1_alt', 'KI270713.1' ='chr1_KI270713v1_random	', 'GL339449.2' = 'chr5_GL339449v2_alt', 'KI270772.1' = 'chr2_KI270772v1_alt', 'KI270790.1' = 'chr4_KI270790v1_alt', 
+                       'KI270795.1' = 'chr5_KI270795v1_alt', 'KI270803.1' = 'chr7_KI270803v1_alt', 'KI270805.1' = 'chr7_KI270805v1_alt', 'KI270759.1' = 'chr1_KI270759v1_alt', 'KI270763.1' = 'chr1_KI270763v1_alt', 'KI270862.1' = 'chr17_KI270862v1_alt', 'KI270876.1' = 'chr22_KI270876v1_alt', 
+                       'KI270877.1' = 'chr22_KI270877v1_alt', 'KI270878.1' = 'chr22_KI270878v1_alt', 'KI270879.1' = 'chr22_KI270879v1_alt', 'KI270897.1' = 'chr5_KI270897v1_alt', 'GL000253.2' = 'chr6_GL000253v2_alt', 'GL000254.2' = 'chr6_GL000254v2_alt', 'GL000255.2' = 'chr6_GL000255v2_alt', 
+                       'KI270847.1' = 'chr14_KI270847v1_alt', 'KI270850.1' = 'chr15_KI270850v1_alt', 'KI270853.1' = 'chr16_KI270853v1_alt', 'KI270904.1' = 'chr12_KI270904v1_alt','KI270905.1' = 'chr15_KI270905v1_alt', 'KI270816.1' = 'chr8_KI270816v1_alt', 'KI270821.1' = 'chr8_KI270821v1_alt', 
+                       'KI270830.1' = 'chr11_KI270830v1_alt', 'KI270832.1' = 'chr11_KI270832v1_alt', 'KI270844.1' = 'chr14_KI270844v1_alt', 'KN196475.1' = 'chr3_KN196475v1_fix', 'KN196479.1' = 'chr9_KN196479v1_fix', 'KN196481.1' = 'chr11_KN196481v1_fix', 'KN196484.1' = 'chr19_KN196484v1_fix', 
+                       'KN538369.1' = 'chr12_KN538369v1_fix', 'KI270908.1' = 'chr17_KI270908v1_alt', 'KI270924.1' = 'chr3_KI270924v1_alt','KI270934.1' = 'chr3_KI270934v1_alt', 'KI270938.1' = 'chr19_KI270938v1_alt', 'KQ031389.1' = 'chr15_KQ031389v1_alt','KQ458383.1' = 'chr1_KQ458383v1_alt',
+                       'KQ458386.1' = 'chr19_KQ458386v1_fix', 'KI270855.1' = 'chr16_KI270855v1_alt', 'KI270857.1' = 'chr17_KI270857v1_alt', 'KZ208911.1' = 'chr6_KZ208911v1_fix', 'KZ208912.1' = 'chr7_KZ208912v1_fix', 'KZ208913.1' = 'chr7_KZ208913v1_alt', 'KZ208914.1' = 'chr8_KZ208914v1_fix',
+                       'KZ208915.1' = 'chr8_KZ208915v1_fix', 'KV766194.1' = 'chr6_KV766194v1_fix', 'KV766198.1' = 'chr17_KV766198v1_alt', 'KV880765.1' = 'chr7_KV880765v1_fix', 'KV880768.1' = 'chr16_KV880768v1_fix', 'KZ208906.1' = 'chr1_KZ208906v1_fix' , 'ML143371.1' = 'chr15_ML143371v1_fix',  
+                       'KQ983256.1' = 'chr2_KQ983256v1_alt', 'KV575243.1' = 'chr5_KV575243v1_alt', 'KV575244.1' = 'chr5_KV575244v1_fix', 'KZ208916.1' = 'chr12_KZ208916v1_fix', 'KZ208920.1' = 'chr14_KZ208920v1_fix', 'KZ208922.1' = 'chr18_KZ208922v1_fix', 'KZ559109.1' = 'chr11_KZ559109v1_fix',
+                       'ML143355.1' = 'chr10_ML143355v1_fix', 'ML143361.1' = 'chr12_ML143361v1_fix' , 'ML143362.1' = 'chr12_ML143362v1_fix', 'ML143367.1' = 'chr14_ML143367v1_fix', 'ML143370.1' = 'chr15_ML143370v1_fix'))
+
+
+bed2 <- bed1 %>%
+  mutate(sourceChrom = recode(sourceChrom, 'GL383534.2' = 'chr7_GL383534v2_alt', 'GL383545.1' = 'chr10_GL383545v1_alt', 'GL383574.1' = 'chr19_GL383574v1_alt','GL383575.2'= 'chr19_GL383575v2_alt', 'GL383580.2'='chr21_GL383580v2_alt','GL383582.2'='chr22_GL383582v2_alt','GL000250.2'='chr6_GL000250v2_alt',
+                       'GL000251.2'= 'chr6_GL000251v2_alt','GL000252.2' = 'chr6_GL000252v2_alt','GL000195.1'='chrUn_GL000195v1','GL000219.1' ='chrUn_GL000219v1','GL000256.2'='chr6_GL000256v2_alt','GL000258.2' = 'chr17_GL000258v2_alt','GL949749.2'= 'chr19_GL949749v2_alt','GL949750.2'= 'chr19_GL949750v2_alt',
+                       'GL949752.1' = 'chr19_GL949752v1_alt','GL949753.2'= 'chr19_GL949753v2_alt', 'KB663609.1' = 'chr22_KB663609v1_alt', 'KI270713.1' ='chr1_KI270713v1_random	', 'GL339449.2' = 'chr5_GL339449v2_alt', 'KI270772.1' = 'chr2_KI270772v1_alt', 'KI270790.1' = 'chr4_KI270790v1_alt', 
+                       'KI270795.1' = 'chr5_KI270795v1_alt', 'KI270803.1' = 'chr7_KI270803v1_alt', 'KI270805.1' = 'chr7_KI270805v1_alt', 'KI270759.1' = 'chr1_KI270759v1_alt', 'KI270763.1' = 'chr1_KI270763v1_alt', 'KI270862.1' = 'chr17_KI270862v1_alt', 'KI270876.1' = 'chr22_KI270876v1_alt', 
+                       'KI270877.1' = 'chr22_KI270877v1_alt', 'KI270878.1' = 'chr22_KI270878v1_alt', 'KI270879.1' = 'chr22_KI270879v1_alt', 'KI270897.1' = 'chr5_KI270897v1_alt', 'GL000253.2' = 'chr6_GL000253v2_alt', 'GL000254.2' = 'chr6_GL000254v2_alt', 'GL000255.2' = 'chr6_GL000255v2_alt', 
+                       'KI270847.1' = 'chr14_KI270847v1_alt', 'KI270850.1' = 'chr15_KI270850v1_alt', 'KI270853.1' = 'chr16_KI270853v1_alt', 'KI270904.1' = 'chr12_KI270904v1_alt','KI270905.1' = 'chr15_KI270905v1_alt', 'KI270816.1' = 'chr8_KI270816v1_alt', 'KI270821.1' = 'chr8_KI270821v1_alt', 
+                       'KI270830.1' = 'chr11_KI270830v1_alt', 'KI270832.1' = 'chr11_KI270832v1_alt', 'KI270844.1' = 'chr14_KI270844v1_alt', 'KN196475.1' = 'chr3_KN196475v1_fix', 'KN196479.1' = 'chr9_KN196479v1_fix', 'KN196481.1' = 'chr11_KN196481v1_fix', 'KN196484.1' = 'chr19_KN196484v1_fix', 
+                       'KN538369.1' = 'chr12_KN538369v1_fix', 'KI270908.1' = 'chr17_KI270908v1_alt', 'KI270924.1' = 'chr3_KI270924v1_alt','KI270934.1' = 'chr3_KI270934v1_alt', 'KI270938.1' = 'chr19_KI270938v1_alt', 'KQ031389.1' = 'chr15_KQ031389v1_alt','KQ458383.1' = 'chr1_KQ458383v1_alt',
+                       'KQ458386.1' = 'chr19_KQ458386v1_fix', 'KI270855.1' = 'chr16_KI270855v1_alt', 'KI270857.1' = 'chr17_KI270857v1_alt', 'KZ208911.1' = 'chr6_KZ208911v1_fix', 'KZ208912.1' = 'chr7_KZ208912v1_fix', 'KZ208913.1' = 'chr7_KZ208913v1_alt', 'KZ208914.1' = 'chr8_KZ208914v1_fix',
+                       'KZ208915.1' = 'chr8_KZ208915v1_fix', 'KV766194.1' = 'chr6_KV766194v1_fix', 'KV766198.1' = 'chr17_KV766198v1_alt', 'KV880765.1' = 'chr7_KV880765v1_fix', 'KV880768.1' = 'chr16_KV880768v1_fix', 'KZ208906.1' = 'chr1_KZ208906v1_fix' , 'ML143371.1' = 'chr15_ML143371v1_fix',  
+                       'KQ983256.1' = 'chr2_KQ983256v1_alt', 'KV575243.1' = 'chr5_KV575243v1_alt', 'KV575244.1' = 'chr5_KV575244v1_fix', 'KZ208916.1' = 'chr12_KZ208916v1_fix', 'KZ208920.1' = 'chr14_KZ208920v1_fix', 'KZ208922.1' = 'chr18_KZ208922v1_fix', 'KZ559109.1' = 'chr11_KZ559109v1_fix',
+                       'ML143355.1' = 'chr10_ML143355v1_fix', 'ML143361.1' = 'chr12_ML143361v1_fix' , 'ML143362.1' = 'chr12_ML143362v1_fix', 'ML143367.1' = 'chr14_ML143367v1_fix', 'ML143370.1' = 'chr15_ML143370v1_fix'))
+
+bed_genome_browser_clean_final <- bed2 %>%
+  mutate(targetChrom = recode(targetChrom, 'GL383534.2' = 'chr7_GL383534v2_alt', 'GL383545.1' = 'chr10_GL383545v1_alt', 'GL383574.1' = 'chr19_GL383574v1_alt','GL383575.2'= 'chr19_GL383575v2_alt', 'GL383580.2'='chr21_GL383580v2_alt','GL383582.2'='chr22_GL383582v2_alt','GL000250.2'='chr6_GL000250v2_alt',
+                       'GL000251.2'= 'chr6_GL000251v2_alt','GL000252.2' = 'chr6_GL000252v2_alt','GL000195.1'='chrUn_GL000195v1','GL000219.1' ='chrUn_GL000219v1','GL000256.2'='chr6_GL000256v2_alt','GL000258.2' = 'chr17_GL000258v2_alt','GL949749.2'= 'chr19_GL949749v2_alt','GL949750.2'= 'chr19_GL949750v2_alt',
+                       'GL949752.1' = 'chr19_GL949752v1_alt','GL949753.2'= 'chr19_GL949753v2_alt', 'KB663609.1' = 'chr22_KB663609v1_alt', 'KI270713.1' ='chr1_KI270713v1_random	', 'GL339449.2' = 'chr5_GL339449v2_alt', 'KI270772.1' = 'chr2_KI270772v1_alt', 'KI270790.1' = 'chr4_KI270790v1_alt', 
+                       'KI270795.1' = 'chr5_KI270795v1_alt', 'KI270803.1' = 'chr7_KI270803v1_alt', 'KI270805.1' = 'chr7_KI270805v1_alt', 'KI270759.1' = 'chr1_KI270759v1_alt', 'KI270763.1' = 'chr1_KI270763v1_alt', 'KI270862.1' = 'chr17_KI270862v1_alt', 'KI270876.1' = 'chr22_KI270876v1_alt', 
+                       'KI270877.1' = 'chr22_KI270877v1_alt', 'KI270878.1' = 'chr22_KI270878v1_alt', 'KI270879.1' = 'chr22_KI270879v1_alt', 'KI270897.1' = 'chr5_KI270897v1_alt', 'GL000253.2' = 'chr6_GL000253v2_alt', 'GL000254.2' = 'chr6_GL000254v2_alt', 'GL000255.2' = 'chr6_GL000255v2_alt', 
+                       'KI270847.1' = 'chr14_KI270847v1_alt', 'KI270850.1' = 'chr15_KI270850v1_alt', 'KI270853.1' = 'chr16_KI270853v1_alt', 'KI270904.1' = 'chr12_KI270904v1_alt','KI270905.1' = 'chr15_KI270905v1_alt', 'KI270816.1' = 'chr8_KI270816v1_alt', 'KI270821.1' = 'chr8_KI270821v1_alt', 
+                       'KI270830.1' = 'chr11_KI270830v1_alt', 'KI270832.1' = 'chr11_KI270832v1_alt', 'KI270844.1' = 'chr14_KI270844v1_alt', 'KN196475.1' = 'chr3_KN196475v1_fix', 'KN196479.1' = 'chr9_KN196479v1_fix', 'KN196481.1' = 'chr11_KN196481v1_fix', 'KN196484.1' = 'chr19_KN196484v1_fix', 
+                       'KN538369.1' = 'chr12_KN538369v1_fix', 'KI270908.1' = 'chr17_KI270908v1_alt', 'KI270924.1' = 'chr3_KI270924v1_alt','KI270934.1' = 'chr3_KI270934v1_alt', 'KI270938.1' = 'chr19_KI270938v1_alt', 'KQ031389.1' = 'chr15_KQ031389v1_alt','KQ458383.1' = 'chr1_KQ458383v1_alt',
+                       'KQ458386.1' = 'chr19_KQ458386v1_fix', 'KI270855.1' = 'chr16_KI270855v1_alt', 'KI270857.1' = 'chr17_KI270857v1_alt', 'KZ208911.1' = 'chr6_KZ208911v1_fix', 'KZ208912.1' = 'chr7_KZ208912v1_fix', 'KZ208913.1' = 'chr7_KZ208913v1_alt', 'KZ208914.1' = 'chr8_KZ208914v1_fix',
+                       'KZ208915.1' = 'chr8_KZ208915v1_fix', 'KV766194.1' = 'chr6_KV766194v1_fix', 'KV766198.1' = 'chr17_KV766198v1_alt', 'KV880765.1' = 'chr7_KV880765v1_fix', 'KV880768.1' = 'chr16_KV880768v1_fix', 'KZ208906.1' = 'chr1_KZ208906v1_fix' , 'ML143371.1' = 'chr15_ML143371v1_fix',  
+                       'KQ983256.1' = 'chr2_KQ983256v1_alt', 'KV575243.1' = 'chr5_KV575243v1_alt', 'KV575244.1' = 'chr5_KV575244v1_fix', 'KZ208916.1' = 'chr12_KZ208916v1_fix', 'KZ208920.1' = 'chr14_KZ208920v1_fix', 'KZ208922.1' = 'chr18_KZ208922v1_fix', 'KZ559109.1' = 'chr11_KZ559109v1_fix',
+                       'ML143355.1' = 'chr10_ML143355v1_fix', 'ML143361.1' = 'chr12_ML143361v1_fix' , 'ML143362.1' = 'chr12_ML143362v1_fix', 'ML143367.1' = 'chr14_ML143367v1_fix', 'ML143370.1' = 'chr15_ML143370v1_fix'))
+
+
+write.table(bed_genome_browser_clean_final, "C:/.../bed_genome_browser_clean_final.txt", row.names=FALSE, quote=FALSE)
+
+
