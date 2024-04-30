@@ -8,9 +8,11 @@ Two different analyses were developed to detected fusion transcripts in long rea
 
 # Selected datasets to perform the two analyses
 
-1. First PacBio dataset: https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/. Three cerebellum samples were used for 'toy' analysis. Therefore these samples were used to perform the two analyses previously explained in order to develop and test the codes for the real anaylsis. In particular the first anaylsis was performed on a 'toy' set, which is a small set of fusion transcripts detected by FusionCatcher (32, the one selected for the PCRs).
+1. First PacBio dataset: https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/. Three cerebellum samples were used for 'toy' analysis. Therefore these samples were used to perform the two analyses previously explained in order to develop and test the codes for the real analysis. In particular the first analysis was performed on a 'toy' set, which is a small set of fusion transcripts detected by FusionCatcher (32, the one selected for the PCRs). The Iso-seq pipeline was used on the raw reads of these samples, and the flnc.bam files(full-length non-concatemer reads) of each sample were used to perform the analyses. (*)
 
-2. Second dataset [Bioproject 975746] (https://www.ncbi.nlm.nih.gov/bioproject/975746). RNA was extracted from 4 individuals in the temporal cortex, hypothalamus, and cerebellum. The 12 samples were used to perform the real anaylses.
+2. Second dataset [Bioproject 975746] (https://www.ncbi.nlm.nih.gov/bioproject/975746). RNA was extracted from 4 individuals in the temporal cortex, hypothalamus, and cerebellum. The 12 samples were used to perform the real analyses.(we do not have the access to the original subreads.bam files).
+
+3. Third dataset [Bioproject PRJNA664117] (https://doi.org/10.1016/j.celrep.2021.110022). RNA was extracted from 11 samples. For each sample the subreads.bam files were provided, therefore the Iso-Seq pipeline was employed (https://isoseq.how/clustering/cli-workflow.html) to generate HiFi reads that can then be used to carry out the 2 analyses.
 
 
 # FIRST ANALYSIS: find matches of short read fusions in long reads
