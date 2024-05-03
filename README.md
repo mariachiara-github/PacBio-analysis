@@ -27,3 +27,11 @@ The __pipeline_pbfusion__ script was used to find fusion transcripts in the samp
 Since we want to visualize the fusions in genome browser, the BED file is cleaned and adapted to the interact track format of Genome Browser (https://genome.ucsc.edu/goldenPath/help/interact.html). This track format is used to displays pairwise interactions, therefore the BED file was cleaned from interactions between more than 2 genes (fusions which resulted from the joining of exons of 2 or more genes). The __bed_gb_interact.R__ script was used for this purpose
 
 If we want to visualize the fusions with more than 2 genes detected by pbfusion, the __bed_complexfusions.R__ script can be used to create a BED track which can be uploaded on the Genome Browser. This script is used just for visualization purposes, it aims only to visualize all at once the reads classified as fusions between more than 2 genes.
+
+# CCS and Iso-Seq pipeline 
+
+The first step is to generate HiFi PacBio long-read sequences from the subreads.bam files (sample files) provided by the dataset. The SMRT LINK V7.0 (https://downloads.pacbcloud.com/public/software/installers/smrtlink_7.0.1.66975.zip) version was used to perform the analysis (version compatible with the data of the third dataset). For more information about SMRTLink refer to the following pdf: https://www.pacb.com/wp-content/uploads/SMRT_Tools_Reference_Guide_v700.pdf.  
+
+The CCS pipeline was performed with the default parameters of the tool (version: ccs 3.4.1). In particular, to generate PacBio HiFi data, the minimum number of passes was set to 3 and the minimum predicted accuracy for a read was set to 0.99 (only reads expected to be 99% accurate are emitted). 
+
+
