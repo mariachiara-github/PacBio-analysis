@@ -1,7 +1,6 @@
 #CSS analysis workflow --> produce HiFi reads from subreads
 
-
-ccs --version --report-file --log-file subreads.bam ccs.bam
+ccs --version --report-file --min-passes 3 -min-rq 0.99 --log-file mylog.txt subreads.bam ccs.bam
 
 #Iso-Seq workflow
 
