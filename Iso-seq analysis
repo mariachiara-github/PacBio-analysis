@@ -1,0 +1,11 @@
+#CSS analysis workflow --> produce HiFi reads from subreads
+
+
+ccs --version --report-file --log-file subreads.bam ccs.bam
+
+#Iso-Seq workflow
+
+
+Isoform clustering
+FLNC reads are clustered by their sequencing similarity to produce isoform consensus sequences. This step is the last step of 
+Iso-Seq analysis if no genome is provided
