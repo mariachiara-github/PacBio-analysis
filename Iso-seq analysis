@@ -4,6 +4,10 @@ $ccs7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt
 
 #Iso-Seq workflow
 
+#Primer removal and demultiplexing
+
+
+
 
 Isoform clustering
 FLNC reads are clustered by their sequencing similarity to produce isoform consensus sequences. This step is the last step of 
