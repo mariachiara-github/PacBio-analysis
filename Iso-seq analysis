@@ -12,3 +12,5 @@ $ccs7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt
 Isoform clustering
 FLNC reads are clustered by their sequencing similarity to produce isoform consensus sequences. This step is the last step of 
 Iso-Seq analysis if no genome is provided
+
+
