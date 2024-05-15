@@ -6,6 +6,7 @@ $ccs7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt
 
 #Primer removal and demultiplexing
 
+Version used : paper
 
 
 
