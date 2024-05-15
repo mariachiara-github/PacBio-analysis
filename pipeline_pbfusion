@@ -3,3 +3,8 @@
 pbmm2 align hg38.mmi flnc.bam aligned.bam --preset ISOSEQ --sort --log-level INFO
 
 
+Release 38 (GRCh38.p13)   https://www.gencodegenes.org/human/release_38.html
+
+GTF -> Basic gene annotation, regions = ALL
+FASTA -> Genome sequence (GRCh38.p13), regions = ALL
+
