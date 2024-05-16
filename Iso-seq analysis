@@ -1,5 +1,8 @@
 #CSS analysis workflow --> produce HiFi reads from subreads
+#Use ccs7 for samples with OLD CHEMISTRY
+#Use ccs13 for samples with NEW CHEMISTRY
 
+export ccs7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/ccs"
 $ccs7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt subreads.bam ccs.bam
 
 #Iso-Seq workflow
