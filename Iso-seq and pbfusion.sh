@@ -6,6 +6,8 @@
 #SBATCH --time=5-12
 #SBATCH --export=ALL
 #
+#The following code was adapted from the original one: https://github.com/SziKayLeung/Whole_Transcriptome_Paper/tree/f3190b3d6edcbf9703f69acb58fa6f210968f5bb
+#The dataset used for this particular Iso-Seq and pbfusion pipeline was taken from this study: https://doi.org/10.1016/j.celrep.2021.110022
 #ISO-SEQ WORKFLOW
 #CSS analysis workflow --> produce HiFi reads from subreads. Use version v7 or v13 depending on the CHEMISTRY of the samples
 #Use ccs7 for samples with OLD CHEMISTRY 
@@ -16,19 +18,23 @@ export lima_v7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bund
 export isoseq3_v7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/isoseq3"
 export isoseq_v13="/home/mbocchi/SMRT_ROOT/install/smrtlink-release_13.0.0.214433/smrtcmds/bin/isoseq"
 
+FASTA="/zfs/jacobs/Colette/Maria/SRA_PRJNA664117/primer.fasta"
+cat $FASTA
+
 #List the versions for each tool used (use the right version depending on the CHEMISTRY of the samples)
 echo "1.ccs version"
-$ccsv_7 --version
-$ccsv_13 --version
+$ccsv_7 / $ccsv_13 --version
 
 echo "2.lima version"
-$lima_v7 --version
+$lima_v7 / $lima_v13 --version
 
 echo "3.isoseq3 version (used for refine)"
-$isoseq3_v7 --version
+$isoseq3_v7 / $isoseq3_v13 --version
 
 echo "4.isoseq cluster2 version"
 $isoseq_v13 cluster2 --version
+
+
 
 $ccs7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt subreads.bam ccs.bam
 
@@ -40,8 +46,7 @@ $ccs7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt
 Version used : paper
 
 
-FASTA="/zfs/jacobs/Colette/Maria/SRA_PRJNA664117/primer.fasta"
-cat $FASTA
+
 
 echo "5.Running ccs"
 
