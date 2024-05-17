@@ -10,6 +10,7 @@
 #GTF file --> Comprehensive gene annotation, regions = ALL (https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_38/gencode.v38.chr_patch_hapl_scaff.annotation.gtf.gz)
 #FASTA file --> (https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_38/GRCh38.p13.genome.fa.gz)
 
+#Run pbfusion gff-cache --> recommanded when using pbfusion multiple times
 echo "1.pbfusion gff-cache version "
 pbfusion gff-cache --version 
 
