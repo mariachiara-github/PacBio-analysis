@@ -5,7 +5,7 @@
 #SBATCH --mem=256GB
 #SBATCH --time=5-12
 #SBATCH --export=ALL
-#The following code was adapted from the original one: https://github.com/SziKayLeung/Whole_Transcriptome_Paper/tree/f3190b3d6edcbf9703f69acb58fa6f210968f5bb
+#The Iso-Seq workflow code was adapted from the original one: https://github.com/SziKayLeung/Whole_Transcriptome_Paper/tree/f3190b3d6edcbf9703f69acb58fa6f210968f5bb
 #The dataset used for this particular Iso-Seq and pbfusion pipeline was taken from this study: https://doi.org/10.1016/j.celrep.2021.110022
 #
 #ISO-SEQ and pbfusion WORKFLOW 
@@ -66,11 +66,20 @@ echo "4. Running isoseq cluster2"
 $isoseq_v13 cluster2 flnc.bam clustered_2.bam --singletons --log-file cluster2log.txt
 echo "isoseq cluster2 finished"
 
+echo "5. Running pbmm2 for flnc.bam reads"
+echo "pbmm2 flnc.bam finished"
 
+echo "6. Running pbmm2 for clustered.bam reads"
+echo "pbmm2 clustered.bam finished"
 
+echo "7. Running pbmm2 for clustered.bam reads"
+echo "pbmm2 clustered.bam finished"
 
+echo "8. Running pbfusion gtf-cache"
+echo "pbfusion gtf-cache finished"
 
-
+echo "9. Running pbfusion discover"
+echo "pbfusion discover finished"
 
 
 
