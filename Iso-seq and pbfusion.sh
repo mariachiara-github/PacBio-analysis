@@ -21,7 +21,7 @@
   # <isoseq cluster2 flnc.bam clustered.bam --singletons --log-file cluster2log.txt>
 #5. pbmm2 --> align the Iso-seq HiFi reads (flnc.bam file, full-length non-concatemer reads)
 #6. pbfusion gtf-cache 
-  # 
+  # /pbfusion gff-cache.sh --> run this code once and use the output (gtf.bin.xz) for the pbfusion discover  
 #7. pbfusions discover
 
 
@@ -75,18 +75,16 @@ $isoseq_v13 cluster2 flnc.bam clustered_2.bam --singletons --log-file cluster2lo
 echo "isoseq cluster2 finished"
 
 echo "5. Running pbmm2 for flnc.bam reads"
+echo "Generate index file for reference"  
+$pbmm2_v13 index GRCh38.p13.genome.fa GRCh38.p13.genome.mmi --preset ISOSEQ
+
+
+
 echo "pbmm2 flnc.bam finished"
 
-echo "6. Running pbmm2 for clustered.bam reads"
-echo "pbmm2 clustered.bam finished"
 
-echo "7. Running pbmm2 for clustered.bam reads"
-echo "pbmm2 clustered.bam finished"
 
-echo "8. Running pbfusion gtf-cache"
-echo "pbfusion gtf-cache finished"
-
-echo "9. Running pbfusion discover"
+echo "6. Running pbfusion discover"
 echo "pbfusion discover finished"
 
 
