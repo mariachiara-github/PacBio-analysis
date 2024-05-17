@@ -20,8 +20,8 @@
 #4. isoseq cluster2 --> FLNC reads are clustered by their sequencing similarity to produce isoform consensus sequences. This step is the last step of Iso-Seq analysis if no genome is provided
   # <isoseq cluster2 flnc.bam clustered.bam --singletons --log-file cluster2log.txt>
 #5. pbmm2 --> align the Iso-seq HiFi reads (flnc.bam file, full-length non-concatemer reads)
-#6. pbfusion gtf-cache
-
+#6. pbfusion gtf-cache 
+  # 
 #7. pbfusions discover
 
 
