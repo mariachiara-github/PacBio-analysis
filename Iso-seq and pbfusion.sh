@@ -17,7 +17,9 @@
   # <lima movie.ccs.bam barcoded_primers.fasta movieX.fl.bam --isoseq --dump-clips --dump-removed>
 #3. isoseq refine --> trimming of poly(A) tail and rapid concatemer identification and removal.
   # <isoseq refine movieX.5p--3p.fl.bam movieX.flnc.bam --require-polya>
-#4. 
+#4. isoseq cluster2 --> de novo isoform-level clustering scalable to large number of reads 
+  # <isoseq cluster2 flnc.bam clustered.bam --singletons --log-file cluster2log.txt>
+
 
 export ccsv_7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/ccs"
 export lima_v7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/lima"
@@ -60,11 +62,6 @@ echo "isoseq cluster2 finished"
 
 
 
-
-
-
-
-#Primer removal and demultiplexing
 
 Version used : paper
 
