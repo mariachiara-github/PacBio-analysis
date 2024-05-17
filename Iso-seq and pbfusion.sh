@@ -8,10 +8,12 @@
 #
 #The following code was adapted from the original one: https://github.com/SziKayLeung/Whole_Transcriptome_Paper/tree/f3190b3d6edcbf9703f69acb58fa6f210968f5bb
 #The dataset used for this particular Iso-Seq and pbfusion pipeline was taken from this study: https://doi.org/10.1016/j.celrep.2021.110022
+#
 #ISO-SEQ WORKFLOW
-#CSS analysis workflow --> produce HiFi reads from subreads. Use version v7 or v13 depending on the CHEMISTRY of the samples
-#Use ccs7 for samples with OLD CHEMISTRY 
-#Use ccs13 for samples with NEW CHEMISTRY
+#1. CSS analysis workflow --> produce HiFi reads from subreads. Use version v7 or v13 depending on the CHEMISTRY of the samples
+  #Use ccs_v7 for samples with OLD CHEMISTRY (see IsoSeq_Processing/Human/All_Human_RawData_OldChem.txt from the GitHub mentioned above)
+  #Use ccs_v13 for samples with NEW CHEMISTRY (see IsoSeq_Processing/Human/All_Human_RawData_NewChem.txt from the GitHub mentioned above)
+
 
 export ccsv_7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/ccs"
 export lima_v7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/lima"
