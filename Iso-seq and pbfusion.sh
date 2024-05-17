@@ -24,12 +24,19 @@
 
 #7. pbfusions discover
 
+
+#Export variables for Iso-Seq workflow
 export ccs_v7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/ccs"
 export ccs_v13="/home/mbocchi/SMRT_ROOT/install/smrtlink-release_13.0.0.214433/smrtcmds/bin/ccs"
 export lima_v7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/lima"
 export lima_v13="/home/mbocchi/SMRT_ROOT/install/smrtlink-release_13.0.0.214433/smrtcmds/bin/lima"
 export isoseq3_v7="/home/mbocchi/smrtlink/install/smrtlink-release_7.0.1.66975/bundles/smrttools/install/smrttools-release_7.0.1.66768/smrtcmds/bin/isoseq3"
 export isoseq_v13="/home/mbocchi/SMRT_ROOT/install/smrtlink-release_13.0.0.214433/smrtcmds/bin/isoseq"
+
+#Export variables for the pbfusions workflow
+export pbmm2_v13="/home/mbocchi/SMRT_ROOT/install/smrtlink-release_13.0.0.214433/smrtcmds/bin/pbmm2" 
+export h38mmi="/zfs/jacobs/Colette/Maria/SRA_PRJNA664117/GRCh38.p13/GRCh38.p13.genome.mmi"
+export gtfv38="/zfs/jacobs/Colette/Maria/SRA_PRJNA664117/GRCh38.p13/gencode.v38.chr_patch_hapl_scaff.annotation.gtf.bin.xz"
 
 #Path from the GitHub: Utilities/primer.fasta
 FASTA="/zfs/jacobs/Colette/Maria/SRA_PRJNA664117/primer.fasta"
