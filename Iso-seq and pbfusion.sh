@@ -52,6 +52,8 @@ $isoseq3_v7 / $isoseq3_v13 --version
 echo "isoseq cluster2 version"
 $isoseq_v13 cluster2 --version
 
+
+
 #For each step of the workflow use the correct version (either one or the other)
 
 echo "1. Running ccs to get HiFi reads"
