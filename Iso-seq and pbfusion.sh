@@ -51,7 +51,8 @@ echo "isoseq3 version (used for refine)"
 $isoseq3_v7 / $isoseq3_v13 --version
 echo "isoseq cluster2 version"
 $isoseq_v13 cluster2 --version
-
+echo "pbfusion discover version"
+pbfusion discover --version
 
 
 #For each step of the workflow use the correct version (either one or the other)
@@ -77,14 +78,19 @@ echo "isoseq cluster2 finished"
 echo "5. Running pbmm2 for flnc.bam reads"
 echo "Generate index file for reference"  
 $pbmm2_v13 index GRCh38.p13.genome.fa GRCh38.p13.genome.mmi --preset ISOSEQ
-
-
-
+echo "Use index to align reads"
+$pbmm2_v13 align $h38mmi flnc.bam aligned.bam --preset ISOSEQ --sort --log-level INFO --log-file align.txt
 echo "pbmm2 flnc.bam finished"
 
 
-
 echo "6. Running pbfusion discover"
+pbfusion discover \
+    --gtf $gtfv38 \
+    --output-prefix isoseq \
+    --threads 8 \
+    --min-fusion-quality LOW \
+    -v \
+    aligned.bam 
 echo "pbfusion discover finished"
 
 
