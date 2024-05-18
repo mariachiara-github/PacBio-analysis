@@ -44,7 +44,7 @@ cat $FASTA
 
 #List the versions for each tool used (use the right version depending on the CHEMISTRY of the samples)
 echo "ccs version"
-$ccsv_7 / $ccsv_13 --version
+$ccs_v7 / $ccsv_13 --version
 echo "lima version"
 $lima_v7 / $lima_v13 --version
 echo "isoseq3 version (used for refine)"
@@ -58,7 +58,7 @@ pbfusion discover --version
 #For each step of the workflow use the correct version (either one or the other)
 
 echo "1. Running ccs to get HiFi reads"
-$ccsv_7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt subreads.bam ccs.bam
+$ccs_v7 --reportFile --minPasses=3 --minPredictedAccuracy=0.99 --logFile mylog.txt subreads.bam ccs.bam
 $ccsv_13 subreads.bam ccs.bam
 echo "ccs finished"
 
