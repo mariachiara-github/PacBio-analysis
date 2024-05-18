@@ -75,6 +75,9 @@ echo "4. Running isoseq cluster2"
 $isoseq_v13 cluster2 flnc.bam clustered_2.bam --singletons --log-file cluster2log.txt
 echo "isoseq cluster2 finished"
 
+mkdir pbfusion
+cd "./pbfusion/"
+
 echo "5. Running pbmm2 for flnc.bam reads"
 echo "Generate index file for reference"  
 $pbmm2_v13 index GRCh38.p13.genome.fa GRCh38.p13.genome.mmi --preset ISOSEQ
