@@ -2,15 +2,15 @@
 
 Two different analyses were developed to detected fusion transcripts in long read PacBio data (Iso-Seq data). 
 
-1. The first one aimed to find MATCHES of previously identified short reads fusion transcripts (592 filtered fusions transcripts detected by FusionCatcher tool) in long reads. The __long_read_seq_analysis.R__ R code was employed for this purpose.
+1. The first one aimed to find MATCHES of previously identified short reads fusion transcripts (660 filtered fusions transcripts detected by FusionCatcher tool) in long reads. The __long_read_seq_analysis.R__ R code was employed for this purpose.
 
-2. The second anaylsis aimed to find fusion transcripts in long read data employing the __pbfusion__ tool (https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
+2. The second anaylsis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool (https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
 
 # Selected datasets to perform the two analyses
 
-1. First PacBio dataset: https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/. Three cerebellum samples were used for 'toy' analysis. Therefore these samples were used to perform the two analyses previously explained in order to develop and test the codes for the real analysis. In particular the first analysis was performed on a 'toy' set, which is a small set of fusion transcripts detected by FusionCatcher (32, the one selected for the PCRs). The Iso-seq pipeline was used on the raw reads of these samples, and the flnc.bam files(full-length non-concatemer reads) of each sample were used to perform the analyses. (*)
+1. First PacBio dataset: https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/. Three cerebellum samples were used for 'toy' analysis. Therefore these samples were used to perform the two analyses previously explained in order to develop and test the codes for the real analysis. The flnc.bam files(full-length non-concatemer reads) of each sample were used to perform the analyses (the flnc.bam files are provided in the database, so I did not perform the Iso-Seq pipeline on these samples).
 
-2. Second dataset [Bioproject 975746] (https://www.ncbi.nlm.nih.gov/bioproject/975746). RNA was extracted from 4 individuals in the temporal cortex, hypothalamus, and cerebellum. The 12 samples were used to perform the real analyses.(we do not have the access to the original subreads.bam files).
+2. Second dataset [Bioproject 975746] (https://www.ncbi.nlm.nih.gov/bioproject/975746). RNA was extracted from 4 individuals in the temporal cortex, hypothalamus, and cerebellum. The 12 samples were used to perform the real analyses. 
 
 3. Third dataset [Bioproject PRJNA664117] (https://doi.org/10.1016/j.celrep.2021.110022). RNA was extracted from 11 samples. For each sample the subreads.bam files were provided, therefore the Iso-Seq pipeline was employed (https://isoseq.how/clustering/cli-workflow.html) to generate HiFi reads that can then be used to carry out the 2 analyses.
 
@@ -28,10 +28,13 @@ Since we want to visualize the fusions in genome browser, the BED file is cleane
 
 If we want to visualize the fusions with more than 2 genes detected by pbfusion, the __bed_complexfusions.R__ script can be used to create a BED track which can be uploaded on the Genome Browser. This script is used just for visualization purposes, it aims only to visualize all at once the reads classified as fusions between more than 2 genes.
 
-# CCS and Iso-Seq pipeline 
+# Iso-seq pipeline for Dataset 2
+
+For the second dataset the ccs.bam files were disclosed. Therfore the first step is to generate the HiFi reads from the ccs.bam, and then perforom the Iso-Seq pipeline up to the flnc.bam generation. This file is then used to look for the fusions.
+
+# CCS and Iso-Seq pipeline for Dataset 3
 
 The first step is to generate HiFi PacBio long-read sequences from the subreads.bam files (sample files) provided by the dataset. The SMRT LINK V7.0 (https://downloads.pacbcloud.com/public/software/installers/smrtlink_7.0.1.66975.zip) version was used to perform the analysis (version compatible with the data of the third dataset). For more information about SMRTLink refer to the following pdf: https://www.pacb.com/wp-content/uploads/SMRT_Tools_Reference_Guide_v700.pdf.  
 
 The CCS pipeline was performed with the default parameters of the tool (version: ccs 3.4.1). In particular, to generate PacBio HiFi data, the minimum number of passes was set to 3 and the minimum predicted accuracy for a read was set to 0.99 (only reads expected to be 99% accurate are emitted). 
-
 
