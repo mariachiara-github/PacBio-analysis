@@ -1,11 +1,12 @@
 #Match short reads fusions in long reads 
+#This code is meant to be used for each sample (one flnc.bam file at the time)
 
 library("Biostrings")
 library(seqRFLP)         #to tranform a dataframe in FASTA file
 
 
 #Read and transform the FASTA file in dataframe
-fasta <- readDNAStringSet("/zfs/jacobs/Colette/Maria/SRA_PRJNA664117/SRR12660778/AdultB_fasta_flnc.fasta")     #name or path of the FASTA file (long reads)
+fasta <- readDNAStringSet("flnc.fasta")          #name or path of the FASTA file (long reads)
 head(fasta)
 
 #Create a dataframe from the long-reads FASTA file
@@ -13,7 +14,7 @@ fasta.df <- data.frame(sequences=as.character(fasta))
 
 
 #Read the FASTA file with the intereseting fusions
-fusions <- readDNAStringSet("/zfs/jacobs/Colette/Maria/SRA_PRJDB15555/KANSL1_NAIP_NSF.fasta")
+fusions <- readDNAStringSet("shortfusions.fasta")
 #Extract the sequence name
 seq_name <- names(fusions)
 #Extract the sequence
