@@ -4,11 +4,11 @@ Two different analyses were developed to detected fusion transcripts in long rea
 
 1. The first one aimed to find MATCHES (using an alignment tool, minimap2) of previously identified short reads fusion transcripts (717 filtered fusions transcripts detected by FusionCatcher tool) in long reads. The __minimap2_alignment_pacbio.py__ Python code was employed for this purpose.
 
-2. The second anaylsis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool (https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
+2. The second anaylsis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool [pbfusion](https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
 
 # Selected datasets to perform the two analyses
 
-1. First PacBio dataset: https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/. Three cerebellum samples: the flnc.bam files(full-length non-concatemer reads) of each sample were used to perform the analyses (the flnc.bam files are provided in the database).
+1. [First PacBio dataset](https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/). Three cerebellum samples: the flnc.bam files(full-length non-concatemer reads) of each sample were used to perform the analyses (the flnc.bam files are provided in the database).
 
 2. Second dataset [Bioproject 975746] (https://www.ncbi.nlm.nih.gov/bioproject/975746). RNA was extracted from 4 individuals in the temporal cortex, hypothalamus, and cerebellum, 12 samples in total. The CCS files were disclosed, so the Iso-Seq pipeline was carried out to get the flnc.bam files.
 
