@@ -1,10 +1,10 @@
-# PacBio Analyses for fusion transcripts detection in RNAseq data
+# PacBio Analyses for fusion transcripts validation in RNA sequencing HiFi data
 
-Two different analyses were developed to detected fusion transcripts in long read PacBio data (Iso-Seq data). 
+Two different analyses were developed to validate a list of 717 short-read fusion transcripts (FTs), detected by FusionCatcher, in long read PacBio data (Iso-Seq data). 
 
-1. The first one aimed to find MATCHES (using an alignment tool, minimap2) of previously identified short reads fusion transcripts (717 filtered fusions transcripts detected by FusionCatcher tool) in long reads. The __minimap2_alignment_pacbio.py__ Python code was employed for this purpose.
+1. The first one aimed to validate FTs in long reads using an alignment tool, '''minimap2'''. The __minimap2_alignment_pacbio.py__ Python code was employed for this purpose.
 
-2. The second anaylsis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool [pbfusion](https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
+2. The second analysis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool [pbfusion](https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
 
 # Selected datasets to perform the two analyses
 
