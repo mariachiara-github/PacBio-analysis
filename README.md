@@ -16,7 +16,7 @@ A _de novo_ FTs detection in Iso-Seq HiFi data was performed on the samples of t
 
 3. subreads.bam files were disclosed; therefore, the ccs (v3.4.1 and v8.0.0) tool [6] was first used to extract HiFi reads, and FLNC reads were then generated using lima and isoseq refine Iso-Seq tools as previously described.
 
-
+*Note: for each of the 3 datasets, a different ```isoseq_pbfusion_pipeline``` was used to better deal with the different parameters of the ```Iso-Seq pipeline``` required for each specific dataset. However, the ```pbfusion``` parameters were the same for the 3 datasets.
 
 Parameters used for minimap2 (https://github.com/lh3/minimap2, https://lh3.github.io/minimap2/minimap2.html): 
 * indexing of the target sequence
