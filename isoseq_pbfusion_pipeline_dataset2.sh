@@ -9,16 +9,16 @@
 
 # SET ALL THE VARIABLES NECESSARY FOR THIS SCRIPT 
 # Set variables for the pbfusions workflow
-h38mmi="/zfs/jacobs/Colette/Maria/GRCh38.p13/GRCh38.p13.genome.mmi"
-gtfv38="/zfs/jacobs/Colette/Maria/GRCh38.p13/gencode.v38.chr_patch_hapl_scaff.annotation.gtf.bin.xz"
+h38mmi="/path/to/GRCh38.p13/GRCh38.p13.genome.mmi"
+gtfv38="/pathto/GRCh38.p13/gencode.v38.chr_patch_hapl_scaff.annotation.gtf.bin.xz"
 # Set the variable for the primer FASTA file
-FASTA="/zfs/jacobs/Colette/Maria/SRA_PRJDB15555/isoseq_primers.fasta"
+FASTA="/path/to/SRA_PRJDB15555/isoseq_primers.fasta"
 
 
 # CREATE ALL THE NECESSARY DIRECTORIES
 # Create a directory to store the flnc.fastq.gz files that will be used in further analyses
-mkdir -p "./fastq_flnc"
-fastq_flnc="./fastq_flnc"
+mkdir -p "/path/to/fastq_flnc/"
+fastq_flnc="/path/to/Maria/fastq_flnc/"
 
 
 # LISTING THE VERSION OF EACH TOOL USED IN THE PIPELINE
@@ -30,13 +30,13 @@ echo "isoseq version (used for refine)"
 isoseq refine --version
 echo "bam2fastq version"
 bam2fastq --version
+echo "pbmm2 version"
+pbmm2 --version 
 echo "pbfusion discover version"
 pbfusion discover --version
 
-
 # ARRAY OF SAMPLES NAMES
 samples=("N1_C" "N1_H" "N1_T" "N28_C" "N28_H" "N28_T" "R2_C" "R2_H" "R2_T" "R8_C" "R8_H" "R8_T") 
-
 
 # RUN THE ISO-SEQ AND PBFUSION WORKFLOW FOR EACH SAMPLE
 for sample in "${samples[@]}"; do
@@ -70,8 +70,8 @@ for sample in "${samples[@]}"; do
     samtools view ${sample}.flnc.bam | wc -l > flnc_${sample}.txt
     echo "count finished"
     
-    # RUNNING THE pbfsion WORKFLOW
-    #Set the varaible for the flnc file
+    # RUNNING THE pbfusion WORKFLOW
+    #Set the variable for the flnc file
     export flnc="${sample}.flnc.bam"
     
     # Create the pbfusion directory 
@@ -100,14 +100,16 @@ for sample in "${samples[@]}"; do
     # Change directory to the previous one (sample_dir)
     cd ..
     
-    # We want to use the flnc.bam file in further anlyses, but in the flnc.fastq.gz format 
+    # We want to use the flnc.bam file in further analyses, but in the flnc.fastq.gz format 
     echo "8. Converting flnc.bam file into a fastq.gz file for further analyses"
-    bam2fastq -o "../${fastq_flnc}/${sample}" ${flnc}
+    bam2fastq -o "${fastq_flnc}/${sample}" ${flnc}
     echo "fastq.gz finished"
     
-    # Change directory to the working directory to process the other samples
+    # Change the directory to the working directory to process the other samples
     cd ..
 
 done
 
 echo "All samples processed successfully."
+
+
