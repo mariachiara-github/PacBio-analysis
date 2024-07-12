@@ -83,7 +83,7 @@ def process_sample(rna_seq_fastq):
 
     # Step 2: Align the RNA-seq reads to the indexed transcripts
     print(f"Aligning reads for {rna_seq_fastq} with Minimap2...")
-    subprocess.run(["minimap2","-a","-xmap-hifi","--eqx","-uf","--secondary=no","--sam-hit-only","-s 70", "-O 20,26", transcripts_fasta,rna_seq_fastq,"-o", aligned_sam], check=True)
+    subprocess.run(["minimap2","-a","-xmap-hifi","--eqx","--secondary=no","--sam-hit-only","-s 83", "-A 1","-B 1", transcripts_fasta,rna_seq_fastq,"-o", aligned_sam], check=True)
     print(f"Alignment completed for {rna_seq_fastq}.")
 
     # Step 3: Convert SAM to BAM, sort and index BAM
@@ -133,7 +133,9 @@ def process_sample(rna_seq_fastq):
                     transcript_read_ids.append(read_id)
                 read_ids_str = ', '.join(transcript_read_ids)
                 csv_lines.append([transcript,read_ids_str,count_reads])         
-    print(f"FASTA files written for {sample_name}. The number of transcripts matched is: {count_transcripts}.") #count number of tot reads
+    message1 = (f"FASTA files written for {sample_name}. The number of transcripts matched is: {count_transcripts}.") #count number of tot reads
+    with open('output_minimap2.txt', "a") as out_f:
+        print(message1,file=out_f)
     print("Call the CSV_file function to create a CSV file with the Transcipts, Reads and Read Count for each sample")
     CSV_file(sample_name,csv_lines)
     bamfile.close()
