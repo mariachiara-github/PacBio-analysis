@@ -2,11 +2,8 @@
 
 Two different analyses were developed to validate a list of 717 short-read fusion transcripts (FTs), detected by FusionCatcher, in long read PacBio data (Iso-Seq data). 
 
-1. The first one aimed to validate FTs in long reads using an alignment tool,
-'''
-minimap2
-'''
-3. . The __minimap2_alignment_pacbio.py__ Python code was employed for this purpose.
+1. The first one aimed to validate FTs in long reads using an alignment tool,```minimap2```
+2. The __minimap2_alignment_pacbio.py__ Python code was employed for this purpose.
 
 4. The second analysis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool [pbfusion](https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
 
