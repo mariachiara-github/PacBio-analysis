@@ -2,7 +2,7 @@
 
 ################################################################################
 # Script: fusions_per_individual.py
-# Description: For each of the 717 fusion transcripts, find in how many of the 7
+# Description: For each of the 717 fusion transcripts, find in how many of the 6
 # individuals that fusion was found. This analysis is performed on the fusions 
 # identified in each individual by minimap2.
 # Usage: sbatch fusions_per_individual.py
