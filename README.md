@@ -1,10 +1,18 @@
 # PacBio Analyses for fusion transcripts validation in RNA sequencing HiFi data
 
-Two different analyses were developed to validate a list of 717 short-read fusion transcripts (FTs), detected by FusionCatcher, in long-read PacBio data (Iso-Seq data). 
+We collected RNA sequencing brain data from three publicly available datasets to validate the 717 fusion transcripts (FTs), detected by FusionCatcher, in PacBio long reads. The flnc.bam(full-length, non-concatemer reads)files for each sample were used for this purpose. 
 
-1. The first one aimed to validate FTs in long reads using an alignment tool,```minimap2```. The ```__minimap2_alignment_pacbio.py__```Python code was employed for this purpose.
+In the first dataset, PacBio Kinnex full-length RNA (Homo sapiens – Cerebellum) [1], the FLNC files of the 3 cerebellum samples were directly available for download. In the second dataset (DDBJ: PRJDB15555)[2], the CCS reads for each of the 12 samples were disclosed, and the FLNC reads were generated following the Iso-Seq pipeline [3]. HiFi reads (predicted accuracy ≥Q20) were first extracted from the CCS reads of each sample using extracthifi (v3.1.1) [4] PacBio tool, and with the subsequent Iso-Seq workflow, primers were removed using lima (v2.9.0) tool and isoseq refine (v4.0.0) was used for trimming PolyA tails and concatemer removal. From the third dataset [5] the subreads.bam files were disclosed; therefore, the ccs (v3.4.1 and v8.0.0) tool [6] was first used to extract HiFi reads, and FLNC reads were then generated using lima and isoseq refine Iso-Seq tools as previously described.                                                                          After we obtained all the flnc.bam files, minimap2 (v2.28-r1209) [7] was used to first index the 7171 FTs, and then to map the FLNC long reads on the FT sequences, allowing for a maximum of 3 mismatches in a sequence of 86bp. 
+Validation of FTs Detected by minimap2 in pbfusion 
+A de novo 
 
-4. The second analysis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool [pbfusion](https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
+### Fusion Transcripts Detections in Long Reads PacBio HiFi Data by minimap2
+First, we aimed to validate FTs in long reads using an alignment tool,```minimap2(v2.28-r1209)```, that we used to first index the 717 FTs, and then to map the FLNC long reads on the FT sequences, allowing for a maximum of 3 mismatches in a sequence of 86bp. The ```minimap2_alignment_pacbio.py```Python code was employed for this purpose. The results of the minimap2 were recorded for the samples of the first and the second dataset. The samples of the third dataset were solely used to search for KANSL1_ARL17A/B, KANSL1_LRRC37A3, NAIP_OCLN and NSF_LRRC37A3 FTs.
+
+### Validation of FTs Detected by minimap2 in pbfusion 
+A _de novo_ FTs detection in Iso-Seq HiFi data was performed on the samples of the first and second dataset using the  [```pbfusion (v0.4.1) ```](https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file). The Iso-Seq HiFi reads (FLNC) were first aligned to the human genome (GRCh38.p13.genome.fa) by pbmm2(v1.14.99)[10]. Then pbfusion was run on aligned reads, allowing the emission of both LOW and MEDIUM fusions. A python(v3.11.8) script was next developed to look for matches of FTs, identified by minimap2, in FTs detected by pbfusion. The matching was based on the read name of each FTs and using pandas library.
+
+2. The second analysis aimed to perform a _de novo_ analysis for finding fusion transcripts in long read data employing the __pbfusion__ tool [pbfusion](https://github.com/PacificBiosciences/pbfusion/tree/master?tab=readme-ov-file).
 
 ## Selected datasets to perform the two analyses
 
