@@ -10,7 +10,7 @@ A _de novo_ FTs detection in Iso-Seq HiFi data was performed on the samples of t
 
 ### Selected datasets 
 
-1. [PacBio Kinnex full-length RNA (Homo sapiens – Cerebellum)](https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/): the FLNC files of the 3 cerebellum samples were directly available for download. ```isoseq_pbfusion_pipeline_dataset1.sh``` was used to 
+1. [PacBio Cerebellum)](https://downloads.pacbcloud.com/public/dataset/Kinnex-full-length-RNA/): the FLNC files of the 3 cerebellum samples were directly available for download. ```isoseq_pbfusion_pipeline_dataset1.sh``` was used to 
 
 2. Second dataset [Bioproject 975746](https://www.ncbi.nlm.nih.gov/bioproject/975746). RNA was extracted from 4 individuals in the temporal cortex, hypothalamus, and cerebellum for a pool of 12 samples in total. CCS reads for each of the 12 samples were disclosed, and the FLNC reads were generated following the Iso-Seq pipeline [3]. HiFi reads (predicted accuracy ≥Q20) were first extracted from the CCS reads of each sample using extracthifi (v3.1.1) [4] PacBio tool, and with the subsequent Iso-Seq workflow, primers were removed using lima (v2.9.0) tool and isoseq refine (v4.0.0) was used for trimming PolyA tails and concatemer removal.
 
@@ -20,5 +20,7 @@ The CCS pipeline was performed with the default parameters of the tool (version:
 
 *Note: for each of the 3 datasets, a different ```isoseq_pbfusion_pipeline``` was used to better deal with the different parameters of the ```Iso-Seq pipeline``` required for each specific dataset. However, the ```pbfusion``` parameters were the same for the 3 datasets.
 
+### Codes of this repository
 
+The first code used to validate short-read FTs in long-reads HiFi (FLNC) data, is the ```minimap2_alignment_pacbio.py```, which takes as input ```flnc.fastq.gz``` files for each sample, and returns 
 
