@@ -1,5 +1,4 @@
 ## PacBio Analyses for fusion transcripts validation in RNA sequencing HiFi data
-STILL IN PROGRESS...
 We collected RNA sequencing brain data from three publicly available datasets to validate the 717 fusion transcripts (FTs), detected by FusionCatcher, in PacBio long reads. The ```flnc.bam``` (full-length, non-concatemer reads) files for each sample were used for this purpose. 
 
 ### Fusion Transcripts Detections in Long Reads PacBio HiFi Data by minimap2
