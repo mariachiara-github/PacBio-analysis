@@ -30,6 +30,10 @@ Moreover, this script checks how many interchromosomal fusions are found in each
 
 #### ```fusions_per_indvidual.py``` and ```fusions_per_indvidual_pbfusion.py```
 
+These two codes were developed to check for each of the 717 fusion transcripts how many of 6 individuals had it. This analysis was performed both on the fusions matched by the ```minimap2_alignment_pacbio.py``` script and on the fusions matched from the ```find_pbfusion.py```
+
+
+
 #### ```get_long_reads.py```
 
 #### ```intersection_brain_areas.py``` 
