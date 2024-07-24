@@ -14,7 +14,7 @@
 # = 2 individuals, Second Database: 12 samples = 4 individuals).
 # This version uses parallel processing for each sample.
 # Install pysam and pandas in a new environment and activate before use.
-# Usage: sbatch minimap2_alignment_pacbio.py
+# Usage: sbatch find_pbfusions.py
 ###################################################################################
 
 #SBATCH --nodes=1
