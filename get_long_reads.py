@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 
-################################################################################
+##################################################################################
 # Script: get_long_reads.py
 # Description: This script was used to retrieve the long reads sequences among 
 # the 29 samples, of KANSL1_ARL17A_17, KANSL1_ARL17B_17, KANSL1_LRRC37A3,
-# NAIP_OCLN and NSF_LRRC37A3 fusion transcripts
+# NAIP_OCLN and NSF_LRRC37A3 fusion transcripts. The script takes as input a txt
+# file with the FASTA directory of each sample (directory created by the 
+# minimap2_alignment_pacbio.py script). The code returns a FASTA file with all
+# long reads sequences retrieved in any of the 29 samples for that specific fusion
 # Usage: sbatch get_long_reads.py
-################################################################################
+##################################################################################
 
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
