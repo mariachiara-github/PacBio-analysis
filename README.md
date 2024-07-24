@@ -21,9 +21,15 @@ A _de novo_ FTs detection in Iso-Seq HiFi data was performed on the samples of t
 ### Codes of this repository
 
 #### ```minimap2_alignment_pacbio.py```
-The first script, used to validate short-read FTs in long-reads HiFi (FLNC) data, is the ```minimap2_alignment_pacbio.py```, which takes as input ```flnc.fastq.gz``` files for each sample and returns the fusion transcripts matched between short and long reads (FASTA files for each fusion found in each sample). Moreover, it returns a CSV file for each sample which includes the transcript name and the read names associated with each transcript.
+The first script is used to validate short-read FTs in long-reads HiFi (FLNC) data, which takes as input ```flnc.fastq.gz``` files for each sample and returns the fusion transcripts matched between short and long reads (FASTA files for each fusion found in each sample). Moreover, it returns a CSV file for each sample which includes the transcript name and the read names associated with each transcript.
 
 #### ```find_pbfusion.py```
 
 The second script processes a list of CSV files (output of minimap2_alignment_pacbio.py) and a list of ```pbfusion``` BED files (one of the outputs of the isoseseq_pbufusion pipeline). For each CSV and pbfusion file (of the same sample) this script finds matches between the 2 files based on the PacBio read name. The matches are stored as CSV files for each sample. 
 Moreover, this script checks how many interchromosomal fusions are found in each final dataframe and if the gene name of the short-read fusion transcript matches the gene name of the long-read fusion (pbfusion name). 
+
+#### ```fusions_per_indvidual.py``` and ```fusions_per_indvidual_pbfusion.py```
+
+#### ```get_long_reads.py```
+
+#### ```intersection_brain_areas.py``` 
