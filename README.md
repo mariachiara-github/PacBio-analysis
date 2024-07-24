@@ -39,8 +39,7 @@ The total number of individuals from the 2 datasets is 6: from the first dataset
 
 #### ```get_long_reads.py```
 
-This script was used to retrieve the long reads sequences among the 29 samples, of KANSL1_ARL17A_17, KANSL1_ARL17B_17, KANSL1_LRRC37A3, NAIP_OCLN and NSF_LRRC37A3 fusion transcripts.
-
-
+This script was used to retrieve the long reads sequences among the 29 samples, of  __KANSL1_ARL17A/B__, __KANSL1_LRRC37A3__, __NAIP_OCLN__ and __NSF_LRRC37A3__ fusion transcripts.
 
 #### ```intersection_brain_areas.py``` 
+
