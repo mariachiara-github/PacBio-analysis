@@ -20,5 +20,8 @@ A _de novo_ FTs detection in Iso-Seq HiFi data was performed on the samples of t
 
 ### Codes of this repository
 
-The first code used to validate short-read FTs in long-reads HiFi (FLNC) data, is the ```minimap2_alignment_pacbio.py```, which takes as input ```flnc.fastq.gz``` files for each sample, and returns the for each 
+#### ```minimap2_alignment_pacbio.py```
+The first code used to validate short-read FTs in long-reads HiFi (FLNC) data, is the ```minimap2_alignment_pacbio.py```, which takes as input ```flnc.fastq.gz``` files for each sample and returns the fusion transcripts matched between short and long reads (FASTA files for each fusion found in each sample). Moreover, it returns a CSV file for each sample which includes the transcript name and the read names associated with each transcript.
+
+
 
